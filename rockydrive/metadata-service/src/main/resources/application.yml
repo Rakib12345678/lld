@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: metadata-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/metadatadb
+    username: rockydrive
+    password: rockydrive
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+jwt:
+  # Shared secret with auth-service — tokens are validated locally here, never via a synchronous
+  # call to auth-service. Override via JWT_SECRET env var in every real environment.
+  secret: ${JWT_SECRET:dev-only-shared-secret-change-me}

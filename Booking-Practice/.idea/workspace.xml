@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a1dcdb11-29ef-411c-af70-e6238717cbee" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Cinema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Movie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Screen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Seat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/Show.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Model/ShowSeat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/BookingManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/BookingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/DefaultPricing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/PricingStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/SeatLockManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/Service/WeekendPricingStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/enums/MovieGenre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Booking-Service-Practice/src/main/java/enums/SeatStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/controller/ShortenerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/dto/ShortenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/model/CounterSeq.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/model/UrlMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/repository/UrlMappingRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/service/SequenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/service/ShortenerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../shorturl/src/main/java/com/rocky/shorturl/util/Base62.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/Dice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/ExactRollRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/GameManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/MoveRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/StandardDice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/ThreeSixesRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder-2/TurnRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/.idea/snake-ladder.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Dice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/MoveCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/SnakeAndLadderGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../snake-ladder/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tic-tac-toe/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tic-tac-toe/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tic-tac-toe/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tic-tac-toe/TicTacToeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../editor" beforeDir="false" afterPath="$PROJECT_DIR$/../editor" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/zendot/Desktop/rocky/lld/Booking-Practice" value="3IYSprn1L5zt5OpQiCX4psjNyjj" />
+    </persistenceIdMap>
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="4" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3IYSprn1L5zt5OpQiCX4psjNyjj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a1dcdb11-29ef-411c-af70-e6238717cbee" name="Changes" comment="" />
+      <created>1787940196788</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1787940196788</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

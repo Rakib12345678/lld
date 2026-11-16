@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.rocky.rockydrive</groupId>
+        <artifactId>rockydrive</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>notification-service</artifactId>
+    <packaging>jar</packaging>
+
+    <name>notification-service</name>
+    <description>
+        Pushes real-time "sync required" notifications to connected clients. Holds an in-memory
+        WebSocket session registry (userId -&gt; sessions), consumes file.updated/file.deleted/file.shared
+        events from Kafka, and either fans the event out over an open WebSocket session or falls back
+        to an FCM wake-up push when the user has no active connection.
+    </description>
+
+    <properties>
+        <!--
+          The reactor parent targets Java 24 (maven.compiler.source/target = 24), but Spring Boot
+          3.x does not yet officially support/certify Java 24. This module overrides the compiler
+          properties to 21 (the newest LTS Spring Boot 3.x fully supports) so the Spring Boot Maven
+          Plugin / auto-configuration stack has a known-good target. Java 21 is available locally
+          and javac (even run from a newer JDK) can still compile down to release 21.
+        -->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+
+        <spring-boot.version>3.3.5</spring-boot.version>
+        <jjwt.version>0.12.6</jjwt.version>
+        <firebase-admin.version>9.3.0</firebase-admin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Shared event/DTO contracts (FileUpdatedEvent, FileDeletedEvent, FileSharedEvent, ...). -->
+        <dependency>
+            <groupId>com.rocky.rockydrive</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- WebSocket support for the /ws/sync endpoint. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <!-- Kafka consumer for the file.updated / file.deleted / file.shared topics. -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <!-- Config binding (notification.jwt.*, notification.fcm.*) + basic Spring context. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Local JWT validation (shared-secret HMAC) - no synchronous call to auth-service. -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+          FCM wake-up push fallback. Only wired through FirebaseFcmPushService, which is disabled
+          by default (notification.fcm.enabled=false) so no live credentials are required to build,
+          test, or run this module out of the box - NoOpFcmPushService is the active bean until FCM
+          is explicitly enabled and configured.
+        -->
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>${firebase-admin.version}</version>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>notification-service</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+              Maven itself (and therefore the JVM Surefire forks tests in) may be running on a JDK
+              newer than the 21 this module compiles to - e.g. a locally-installed Java 24. The
+              Mockito/Byte Buddy versions currently managed by the Spring Boot BOM don't yet
+              officially recognize class file versions beyond Java 23 when instrumenting mocks at
+              runtime, which fails with "Java 24 (68) is not supported by ... Byte Buddy" even
+              though the actual test code targets 21. The experimental flag below allows Byte Buddy
+              to proceed on newer runtimes; it's the standard workaround until the BOM catches up.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>-Dnet.bytebuddy.experimental=true</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

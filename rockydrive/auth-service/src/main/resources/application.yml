@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb
+    username: ${DB_USERNAME:rockydrive}
+    password: ${DB_PASSWORD:rockydrive}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+# Shared secret used to sign access tokens. Every other service must be configured with this
+# same value (env var, not the default) so it can validate JWTs locally instead of calling
+# auth-service synchronously on every request.
+jwt:
+  secret: ${JWT_SECRET:dev-only-shared-secret-change-me}
+  access-token-ttl-minutes: 15
+  refresh-token-ttl-days: 30

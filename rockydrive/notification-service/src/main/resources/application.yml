@@ -1,0 +1,25 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: notification-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+
+# Shared secret with auth-service — tokens are validated locally here, never via a synchronous
+# call to auth-service. Override via JWT_SECRET env var in every real environment.
+jwt:
+  secret: ${JWT_SECRET:dev-only-shared-secret-change-me}
+
+notification:
+  fcm:
+    # Disabled by default: no live Firebase project/credentials required to build/run/test this
+    # module. Flip to true (and set credentials-path) to enable real FCM wake-up pushes.
+    enabled: ${NOTIFICATION_FCM_ENABLED:false}
+    credentials-path: ${NOTIFICATION_FCM_CREDENTIALS_PATH:}

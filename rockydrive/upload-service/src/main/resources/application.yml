@@ -1,0 +1,48 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: upload-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uploaddb
+    username: rockydrive
+    password: rockydrive
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+storage:
+  # Internal client (bucket ops, presign signing) talks to MinIO on the docker network / localhost.
+  endpoint: http://localhost:9000
+  # Presigned URLs are handed to the browser/client, so they must resolve from outside the
+  # container network. Same host as `endpoint` for local dev; diverges from it in prod behind a CDN/LB.
+  public-endpoint: http://localhost:9000
+  region: us-east-1
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket: rockydrive-chunks
+  force-path-style: true
+
+upload:
+  chunk:
+    min-size-bytes: 4194304   # 4MB
+    max-size-bytes: 8388608   # 8MB
+
+jwt:
+  # Shared secret with auth-service — tokens are validated locally here, never via a synchronous
+  # call to auth-service. Override via JWT_SECRET env var in every real environment.
+  secret: ${JWT_SECRET:dev-only-shared-secret-change-me}
